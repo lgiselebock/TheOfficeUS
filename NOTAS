@@ -1,0 +1,18 @@
+> names(theoffice_dados)
+"episodio"
+"temporada"
+"episodio_dentro_da_temporada"
+"titulo"
+"duracao"
+"direcao"
+"roteiro"
+"data_transmissao_original"
+"qntd_telespectadores_eua_milhoes"
+"estrelas_imdb"
+"votos_imdb"
+"ano"
+"resumo"
+"elenco"
+
+
+qntd_telespectadores_eua_milhoes por temporada: é possível fazer um BOXPLOT?
