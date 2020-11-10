@@ -1,20 +1,22 @@
-> names(theoffice_dados)
-"episodio"
-"temporada"
-"episodio_dentro_da_temporada"
-"titulo"
-"duracao"
-"direcao"
-"roteiro"
-"data_transmissao_original"
-"qntd_telespectadores_eua_milhoes"
-"estrelas_imdb"
-"votos_imdb"
-"ano"
-"resumo"
-"elenco"
 
 
-qntd_telespectadores_eua_milhoes por temporada: é possível fazer um BOXPLOT?
+https://www.forbes.com/sites/travisbean/2020/08/19/the-office-netflix-top-10-milestones/?sh=96556d978c6c
+https://variety.com/vip/disney-hamilton-audience-nearly-3x-bigger-than-any-netflix-program-in-july-1234729439/
+https://culturadoria.com.br/por-que-the-office-e-uma-serie-tao-querida/
+https://www.imdb.com/title/tt0386676/
+https://medium.com/@renanjonatas/o-que-faz-the-office-tão-boa-19c38fc93ddc
+https://mixdeseries.com.br/relembre-a-serie-the-office-por-que-amamos-tanto-essa-serie/
+https://gauchazh.clicrbs.com.br/cultura-e-lazer/tv/noticia/2020/08/the-office-por-que-a-serie-segue-fazendo-sucesso-e-conquistando-novos-fas-ckebpb7h2001h013gd1ndgywt.html
+http://54cores.blogspot.com/2015/08/dica-de-serie-office-us.html
+
+https://rollingstone.uol.com.br/noticia/episodio-favorito-de-office-foi-odiado-quando-foi-ao-ar-pela-primeira-vez/
+
+In the following table, "U.S. viewers (million)" refers to the number of Americans who viewed the episode on the night of broadcast
+
+
+Número de telespectadores (nos Estados Unidos) que asistiram o episódio na noite em que ele foi transmitdo.
+
+Dependendo da fonte utilizada, há divergências em relação ao número total de episódios. Enquanto o IMDb caracteriza episódios com duração superior a 40 minutos como apenas uma parte, outras fontes dividem estes episódios em duas partes (como ocorreu com *Niágara*).
+
 
 

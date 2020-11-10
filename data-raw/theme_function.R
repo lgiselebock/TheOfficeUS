@@ -10,6 +10,7 @@ theoffice_theme1 <- function() {
           legend.box.just = "right")
 }
 
+
 # LINHAS VERTICAIS
 
 theoffice_theme2 <- function() {

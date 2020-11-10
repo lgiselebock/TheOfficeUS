@@ -2,12 +2,15 @@
 
 audiencia_coluna <- theoffice_dados %>%
   mutate(temporada = as.factor(temporada)) %>%
-  ggplot(aes(x = episodio, width = 0.7,
+  ggplot(aes(x = episodio, width = 0.5,
              y = qntd_telespectadores_eua_milhoes, fill = temporada)) +
   geom_col() +
   labs(x = "Episodios", y = "Audiencia (em milhoes) nos EUA", fill = "Temporada") +
   scale_y_continuous(limits = c(0, 23), breaks = seq(0, 25, 5)) +
+  scale_x_continuous(breaks = seq(0, 188, 40)) +
+  scale_fill_brewer("qual", "Paired") +
   theoffice_theme1()
+
 
 audiencia_linha <- theoffice_dados %>%
   ggplot() +
@@ -21,7 +24,8 @@ audiencia_linha <- theoffice_dados %>%
 
 episodio_por_temporada <- theoffice_dados %>%
   ggplot() +
-  geom_bar(aes(x = temporada)) +
+  geom_bar(aes(x = temporada),
+           color = "black", fill = cores) +
   labs(x = "Temporada", y = "Episodios") +
   scale_y_continuous(limits = c(0, 28), breaks = seq(0, 30, 5)) +
   scale_x_continuous(limits = c(0, 10), breaks = seq(1, 9, 1)) +
@@ -30,23 +34,15 @@ episodio_por_temporada <- theoffice_dados %>%
 
 # TEMPO DE EXIBICAO (EM MINUTOS) DE CADA TEMPORADA
 
-duracao_temporada <- duracao_min_temporada %>%
+duracao_temporada <- theoffice_dados %>%
+  group_by(temporada) %>%
+  summarise(duracao_min_temporada = sum(duracao)) %>%
   ggplot() +
   geom_col(aes(x = temporada, y = duracao_min_temporada)) +
   labs(x = "Temporada", y = "Duracao (em minutos)") +
   scale_x_continuous(limits = c(0, 10), breaks = seq(1, 9, 1)) +
   scale_y_continuous(limits = c(0, 800), breaks = seq(0, 750, 100)) +
   theoffice_theme1()
-
-# duracao_temporada <- theoffice_dados %>%
-#   group_by(temporada) %>%
-#   summarise(duracao_min_temporada = sum(duracao)) %>%
-#   ggplot() +
-#   geom_col(aes(x = temporada, y = duracao_min_temporada)) +
-#   labs(x = "Temporada", y = "Duracao (em minutos)") +
-#   scale_x_continuous(limits = c(0, 10), breaks = seq(0, 9, 1)) +
-#   scale_y_continuous(limits = c(0, 800), breaks = seq(0, 750, 100)) +
-#   theoffice_theme1()
 
 
 # MEDIA DE ESTRELAS (IMDB) RECEBIDAS POR TEMPORADA
@@ -80,7 +76,7 @@ media_audiencia_por_temporada <- theoffice_dados %>%
   summarise(mean_aud_season = mean(qntd_telespectadores_eua_milhoes)) %>%
   ggplot() +
   geom_col(aes(x = temporada, y = mean_aud_season)) +
-  labs(x = "Temporada", y = "Media de audiencia (em milhoes) EUA") +
+  labs(x = "Temporada", y = "Media de audiencia (em milhoes) EUA", ) +
   coord_cartesian(ylim = c(4, 9)) +
   scale_x_continuous(limits = c(0, 10), breaks = seq(1, 9, 1)) +
   scale_y_continuous(breaks = seq(4, 9, .5)) +
@@ -133,11 +129,12 @@ top10_diretores <- diretor_count %>%
   arrange(desc(qnt_episodios)) %>%
   slice_head(n = 10) %>%
   ggplot() +
-  geom_col(aes(x = qnt_episodios, y = reorder(diretor, +qnt_episodios))) +
+  geom_col(aes(x = qnt_episodios, y = reorder(direcao, +qnt_episodios))) +
   labs(x = "Quantidade de episodios", y = "Diretores") +
   coord_cartesian(xlim = c(0, 16)) +
   scale_x_continuous(breaks = seq(0, 15, 3)) +
   theoffice_theme2()
+
 
 
 # ROTEIRISTAS QUE TRABALHARAM NA SERIE
@@ -157,19 +154,37 @@ top10_roteiristas <- roteirista_count %>%
   arrange(desc(qnt_episodios)) %>%
   slice_head(n = 10) %>%
   ggplot() +
-  geom_col(aes(x = qnt_episodios, y = reorder(roteirista, +qnt_episodios))) +
+  geom_col(aes(x = qnt_episodios, y = reorder(roteirista, +qnt_episodios)),
+           color = "black", fill = cores) +
   labs(x = "Quantidade de episodios", y = "Roteiristas") +
   coord_cartesian(xlim = c(9, 23)) +
   scale_x_continuous(breaks = seq(10, 23, 3)) +
   theoffice_theme2()
 
 
+# TOP 15 ATORES QUE MAIS APARECERAM NA SERIE
+
+top15_elenco <- elenco_count %>%
+  arrange(desc(qnt_episodios)) %>%
+  slice_head(n = 15) %>%
+  ggplot() +
+  geom_col(aes(x = qnt_episodios, y = reorder(ator, +qnt_episodios))) +
+  labs(x = "Quantidade de episodios", y = "Atores") +
+  coord_cartesian(xlim = c(120, 190)) +
+  scale_x_continuous(breaks = seq(100, 200, 10)) +
+  theoffice_theme2()
+
+elenco_tabela <- elenco %>%
+  count(elenco_nome) %>%
+  arrange(desc(n)) %>%
+  slice_head(n = 30) %>%
+  na.omit()
 
 
-
-
-
-
+teste <- roteirista %>%
+  count(roteirista_nome) %>%
+  na.omit() %>%
+  nrow()
 
 
 

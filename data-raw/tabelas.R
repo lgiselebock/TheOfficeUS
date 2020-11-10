@@ -4,15 +4,20 @@ diretor <- theoffice_dados %>%
   separate(col = direcao,
            into = c("diretor1", "diretor2"),
            sep = ", ") %>%
-  select(episodio, titulo, starts_with("diretor")) %>%
   pivot_longer(cols = starts_with("diretor"),
                names_to = "diretor_num",
-               values_to = "diretor_nome")
+               values_to = "diretor_nome") %>%
+  rename(direcao = diretor_nome)
 
-diretor_count <- diretores %>%
-  count(diretor_nome) %>%
+diretor_count <- diretor %>%
+  count(direcao) %>%
   na.omit() %>%
-  rename(diretor = diretor_nome, qnt_episodios = n)
+  rename(qnt_episodios = n)
+
+
+tab_diretor_media_imdb <- diretor %>%
+  group_by(direcao) %>%
+  summarise(media_imdb_diretor = mean(estrelas_imdb, na.rm = TRUE))
 
 
 # LISTA DE ROTEIRISTAS
@@ -32,6 +37,8 @@ roteirista_count <- roteirista %>%
   rename(roteirista = roteirista_nome, qnt_episodios = n) %>%
   arrange(desc(qnt_episodios))
 
+
+# LISTA DE ELENCO
 
 elenco <-  theoffice_dados %>%
   separate(col = elenco,
@@ -56,5 +63,23 @@ elenco <-  theoffice_dados %>%
 elenco_count <- elenco %>%
   count(elenco_nome) %>%
   na.omit() %>%
+  arrange(desc(n))
+
+
+elenco_total <- elenco %>%
+  count(elenco_nome) %>%
+  na.omit() %>%
   rename(ator = elenco_nome, qnt_episodios = n) %>%
-  arrange(desc(qnt_episodios))
+  nrow()
+
+
+
+
+
+
+
+
+
+
+
+
