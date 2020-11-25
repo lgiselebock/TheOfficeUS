@@ -61,9 +61,6 @@ O presente trabalho visa realizar uma singela análise sobre o seriado americano
 **The Office** é uma série americana, originalmente transmitida pela NBC entre 25 de março de 2005 e 16 de maio de 2013, com um total de 188 episódios[^1]. A série, uma adaptação do programa britânico de mesmo nome, é exibida em formato de *pseudodocumentário*, e retrata o cotidiano dos funcionários de um escritório filial da *Dunder Mifflin Paper Company*, uma empresa que vende papel localizada na cidade de Scranton, na Pensilvânia. A série venceu 51 prêmios das 193 indicações que recebeu, entre elas consta, principalmente, 1 *Golden Globes* (2006), 2 *Screen Actors Guild Awards* (2007 e 2008) e 5 *Primetime Emmy Awards* (2006, 2007, 2009 e 2013), incluindo melhor série de comédia.
 
 
-:::: {style="display: flex;"}
-
-::: {}
 ```{r episodio_por_temporada, echo = FALSE}
 theoffice_dados %>%
   ggplot() +
@@ -73,9 +70,9 @@ theoffice_dados %>%
   scale_x_continuous(limits = c(0, 10), breaks = seq(1, 9, 1)) +
   theoffice_theme1()
 ```
-:::
 
-::: {}
+É dividida em nove temporadas com uma média de 20 episódios cada uma. A primeira temporada é a mais curta de toda a série, com apenas seis episódios e duração de 137 minutos. Em oposição, as temporadas mais duradouras são a quinta e a sexta, com 26 episódios cada e com 751 e 755 minutos respectivamente.
+
 ```{r duracao_por_temporada, echo = FALSE}
 theoffice_dados %>%
   group_by(temporada) %>%
@@ -88,12 +85,6 @@ theoffice_dados %>%
   scale_y_continuous(limits = c(0, 800), breaks = seq(0, 750, 100)) +
   theoffice_theme1()
 ```
-:::
-
-::::
-
-
-É dividida em nove temporadas com uma média de 20 episódios cada uma. A primeira temporada é a mais curta de toda a série, com apenas seis episódios e duração de 137 minutos. Em oposição, as temporadas mais duradouras são a quinta e a sexta, com 26 episódios cada e com 751 e 755 minutos respectivamente.
 
 
 ## Audiência[^2]
@@ -104,16 +95,15 @@ Em 2019, **The Office** superou *Friends* como a série mais assistida da *Netfl
 Conforme mostra a *Figura 3*, a audiência média de todas as temporadas do seriado não ultrapassa os 9 milhões de telespectadores, sendo a quinta e a nona (e última) temporada as com melhor e pior média - 8.76 e 4,14 milhões de telespctadores, respectivamente. É possível observar, após a saída de Steve Carrel do elenco, ao final da 7ª temporada, uma queda bastante considerável na audiência média das últimas duas temporadas. A *Tabela 1* apresenta a audiência de cada uma das temporadas da série.
 
 
-:::: {style="display: flex;"}
-
-::: {}
-```{r graf_audiencia_media, echo = FALSE, fig.align = "center", fig.width = 6, fig.height = 5}
+```{r graf_audiencia_media, echo = FALSE, fig.align = "center"}
 theoffice_dados %>%
   group_by(temporada) %>%
   summarise(mean_aud_season = mean(qntd_telespectadores_eua_milhoes)) %>%
   ggplot() +
   geom_col(aes(x = temporada, y = mean_aud_season),
            color = "black", fill = paleta9) +
+  geom_text(aes(x = temporada, y = mean_aud_season, label = round(mean_aud_season, 2)), vjust = -1, 
+            family = "StaffMeetingPlain") +
   labs(x = "Temporada", y = "Media da audiencia (em milhoes) nos EUA",
        caption = "Figura 3: Audiencia media (em milhoes) nos EUA") +
   coord_cartesian(ylim = c(4, 9)) +
@@ -121,19 +111,6 @@ theoffice_dados %>%
   scale_y_continuous(breaks = seq(4, 9, .5)) +
   theoffice_theme1()
 ```
-:::
-
-::: {}
-```{r tab_audiencia_media, echo = FALSE, fig.height = 6, fig.width = 5}
-theoffice_dados %>%
-  group_by(temporada) %>%
-  summarise(media_aud_temp = mean(qntd_telespectadores_eua_milhoes)) %>%
-  rename("Temporada" = temporada, "Audiência média (em milhões) nos EUA" = media_aud_temp) %>% 
-  knitr::kable(digits = 2, align ='c', caption = "Tabela 1: Audiência média (em milhões) nos EUA")
-```
-:::
-
-::::
 
 
 A *Figura 4* demonstra a audiência (em milhões de espectadores) para cada episódio da série. Todos os episódios, exceto um, apresentam uma média constante e abaixo dos 10 milhões de espectadores. A exceção é ***Stress Relief***, décimo terceiro episódio da quinta temporada, exibido no dia 1 de fevereiro de 2009 - imediatamente após a transmissão do *SuperBowl XLIII* pela NBC.
@@ -166,7 +143,7 @@ Nele, Dwight encena um incêndio no escritório para testar as habilidades de se
 Entre todos os programas de TV avaliados pelo site IMDb, **The Office** ocupa a 43ª posição com 8.9 estrelas. Nas avaliações dos usuários do IMDb, a sequência da 3ª, a 4ª e a 5ª temporadas como as três melhores da série, obtendo, respectivamente, 8.59, 8.56 e 8.49 estrelas; por outro lado, a 8ª temporada recebeu a menor avaliação, com 7.58 estrelas. A *Figura 5* apresenta a avaliação média para todas as temporadas.
 
 
-```{r media_imdb_por_temporada, echo = FALSE, fig.align = "center", fig.width = 6, fig.height = 4}
+```{r media_imdb_por_temporada, echo = FALSE, fig.align = "center"}
 theoffice_dados %>%
   group_by(temporada) %>%
   summarise(mean_imdb_season = mean(estrelas_imdb)) %>%
@@ -391,7 +368,7 @@ elenco %>%
   count(elenco_nome) %>% 
   arrange(desc(n)) %>% 
   na.omit() %>% 
-  DT::datatable(colnames = c("Ator/Atriz", "Quantidade de episódios"), caption = "Tabela 2: Quantidade de episódios em que cada ator aparece")
+  DT::datatable(colnames = c("Ator/Atriz", "Quantidade de episódios"), caption = "Tabela 1: Quantidade de episódios em que cada ator aparece")
 ```
 ```{r tabela_elenco_personagem, echo = FALSE}
 elenco %>%
@@ -401,7 +378,7 @@ elenco %>%
   inner_join(theoffice_personagens, by = "elenco_nome") %>% 
   select(elenco_nome, personagem_ns, n) %>%
   DT::datatable(colnames = c("Ator/Atriz", "Personagem(ns)", "Quantidade de episódios"),
-                caption = "Tabela 2: Quantidade de episódios em que cada ator aparece")
+                caption = "Tabela 1: Quantidade de episódios em que cada ator aparece")
 ```
 
 
@@ -437,7 +414,7 @@ A maior parte dos atores creditados fizeram apenas uma participação em algum (
 
 [^1]: Dependendo da fonte utilizada, há divergências em relação ao número total de episódios. Enquanto o IMDb caracteriza episódios com duração superior a 40 minutos como apenas uma parte, outras fontes dividem estes episódios em duas partes (como ocorreu com *Niágara*).
 
-[^2]: Número de telespectadores (nos Estados Unidos) que asistiram o episódio na noite em que ele foi transmitido.
+[^2]: Número de telespectadores (nos Estados Unidos) que assistiram o episódio na noite em que ele foi transmitido.
 
 <div/>
 
