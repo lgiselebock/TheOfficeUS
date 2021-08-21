@@ -92,7 +92,7 @@ theoffice_dados %>%
 
 Em 2019, **The Office** superou *Friends* como a série mais assistida da *Netflix* nos Estados Unidos. Segundo dados revelados por Scott Lazerson, executivo da empresa de *streaming*, o seriado protagonizado por Steve Carrel acumulou um total de 52,98 bilhões de minutos assistidos, contra 42,6 bilhões de *Friends*. Apesar do êxito nos dias atuais, **The Office** nunca foi um sucesso de audiência quando exibida nos EUA pela NBC. O programa quase foi cancelado entre a segunda e terceira temporada e só foi salvo por suas boas vendas no iTunes. 
 
-Conforme mostra a *Figura 3*, a audiência média de todas as temporadas do seriado não ultrapassa os 9 milhões de telespectadores, sendo a quinta e a nona (e última) temporada as com melhor e pior média - 8.76 e 4,14 milhões de telespctadores, respectivamente. É possível observar, após a saída de Steve Carrel do elenco, ao final da 7ª temporada, uma queda bastante considerável na audiência média das últimas duas temporadas. A *Tabela 1* apresenta a audiência de cada uma das temporadas da série.
+Conforme mostra a *Figura 3*, a audiência média de todas as temporadas do seriado não ultrapassa os 9 milhões de telespectadores, sendo a quinta e a nona (e última) temporada as com melhor e pior média - 8.76 e 4,14 milhões de telespctadores, respectivamente. É possível observar, após a saída de Steve Carrel do elenco, ao final da 7ª temporada, uma queda bastante considerável na audiência média das últimas duas temporadas.
 
 
 ```{r graf_audiencia_media, echo = FALSE, fig.align = "center"}
@@ -356,7 +356,7 @@ elenco %>%
 ```
 
 
-Muitos atores e atrizes fizeram parte do elenco ao longo dos 188 episódios, seja para em um papel regular, uma participação especial ou apenas uma aparição relâmpago (Conan O' Brian, por exemplo). A *Tabela 2* registra as participações das 775 pessoas que apareceram na série, em ordem decrescente - de quem possui mais aparições para quem possui menos. 
+Muitos atores e atrizes fizeram parte do elenco ao longo dos 188 episódios, seja para em um papel regular, uma participação especial ou apenas uma aparição relâmpago (Conan O' Brian, por exemplo). A *Tabela 1* registra as participações das 787 pessoas que apareceram na série, em ordem decrescente - de quem possui mais aparições para quem possui menos. 
 
 O elenco regular (funcionários do escritório) se concentram nas primeiras posições da tabela. Angela Kinsey, Brian Baumgartner, Jenna Fischer, John Krasinski, Leslie David Baker, Phyllis Smith e Rainn Wilson foram creditados em todos os episódios. 
 
